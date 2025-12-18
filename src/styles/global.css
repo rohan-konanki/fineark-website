@@ -1,0 +1,18 @@
+/* src/styles/global.css */
+/* This file is referenced in BaseLayout.astro */
+
+/* Basic reset/normalize if not using a library like Normalize.css */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}

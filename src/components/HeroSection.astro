@@ -1,0 +1,94 @@
+---
+// src/components/HeroSection.astro
+---
+<section class="hero-section">
+    <div class="container hero-content">
+        <h1>Empowering Your Business with Cutting-Edge IT Solutions</h1>
+        <p class="tagline">Strategic IT consulting, cloud services, cybersecurity, and custom software development to drive your success.</p>
+        <div class="hero-buttons">
+            <a href="/services" class="button primary">Explore Our Services</a>
+            {/* Optional: Add a secondary button if desired, e.g., to Contact Us */}
+            </div>
+    </div>
+    <div class="hero-image-overlay"></div> {/* For a subtle background image or pattern */}
+</section>
+
+<style>
+    /* These styles are scoped specifically to this HeroSection component */
+    .hero-section {
+        position: relative;
+        background-color: var(--color-primary); /* Dark charcoal gray */
+        color: var(--color-text-light); /* Light text on dark background */
+        padding: 8rem 0;
+        text-align: center;
+        overflow: hidden; /* For image overlay */
+    }
+
+    .hero-image-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('/images/hero-bg.jpg'); /* Add a compelling background image */
+        background-size: cover;
+        background-position: center;
+        opacity: 0.15; /* Subtle overlay */
+        z-index: 1;
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 2; /* Ensure content is above the overlay */
+        max-width: 900px;
+    }
+
+    .hero-section h1 {
+        color: white; /* Keep heading white for contrast on dark background */
+        font-size: 3.5rem;
+        margin-bottom: 0.5em;
+    }
+
+    .hero-section .tagline {
+        font-size: 1.4rem;
+        margin-bottom: 2rem;
+        color: var(--color-light-gray); /* Light gray for tagline */
+    }
+
+    .hero-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+    }
+
+    /*
+       IMPORTANT: REMOVED THE OVERRIDE FOR .button.primary HERE!
+       It will now inherit the styles from BaseLayout.astro which use
+       var(--color-secondary) (muted blue) and var(--color-secondary-hover-light) (lighter muted blue).
+    */
+
+    /* Secondary button styling (if you uncomment it later) */
+    .hero-buttons .button.secondary {
+        border-color: white; /* Secondary button border white for contrast on dark hero */
+        color: white; /* Secondary button text white */
+    }
+
+    .hero-buttons .button.secondary:hover {
+    }
+
+    @media (max-width: 768px) {
+        .hero-section {
+            padding: 6rem 0;
+        }
+        .hero-section h1 {
+            font-size: 2.5rem;
+        }
+        .hero-section .tagline {
+            font-size: 1.1rem;
+        }
+        .hero-buttons {
+            flex-direction: column;
+            gap: 1rem;
+        }
+    }
+</style>

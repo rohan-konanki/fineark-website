@@ -1,0 +1,143 @@
+---
+// src/pages/services.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ServiceCard from '../components/ServiceCard.astro'; // This will be the revised component
+import CallToAction from '../components/CallToAction.astro'; // Reusing your existing CTA
+
+const pageTitle = "Services | FineARK Technologies";
+const pageDescription = "Explore the comprehensive range of IT consulting services offered by FineArk Technologies, including cloud solutions, cybersecurity, and custom software development.";
+
+// Define your services data here, WITHOUT the 'icon' property
+const services = [
+    {
+        title: "Cloud Solutions & Migration",
+        description: "Seamlessly migrate your infrastructure to leading cloud platforms (AWS, Azure, Google Cloud) and optimize your cloud spend and performance. We ensure scalability, security, and efficiency in your cloud environment.",
+        features: [
+            "Cloud Strategy & Roadmapping",
+            "IaaS/PaaS Implementation",
+            "Cloud Security & Compliance",
+            "Cost Optimization & Management",
+            "Hybrid & Multi-Cloud Architecture"
+        ]
+    },
+    {
+        title: "Cybersecurity & Data Protection",
+        description: "Safeguard your critical assets with our comprehensive cybersecurity services, including vulnerability assessments, threat detection, incident response, and compliance adherence.",
+        features: [
+            "Vulnerability Assessment & Penetration Testing",
+            "Security Information & Event Management (SIEM)",
+            "Endpoint Detection & Response (EDR)",
+            "Compliance (GDPR, HIPAA, ISO 27001)",
+            "Security Awareness Training"
+        ]
+    },
+    {
+        title: "Custom Software Development",
+        description: "Bring your unique ideas to life with bespoke software solutions tailored to your specific business needs. From web and mobile applications to enterprise systems, we build scalable and robust software.",
+        features: [
+            "Web Application Development (Frontend & Backend)",
+            "Mobile App Development (iOS & Android)",
+            "Enterprise Resource Planning (ERP) Solutions",
+            "API Development & Integration",
+            "DevOps & CI/CD Implementation"
+        ]
+    },
+    {
+        title: "IT Strategy & Digital Transformation",
+        description: "Develop a clear and actionable IT roadmap that aligns with your business goals. We guide your digital transformation journey, helping you leverage technology for competitive advantage.",
+        features: [
+            "Digital Transformation Consulting",
+            "IT Roadmapping & Planning",
+            "Technology Vendor Selection",
+            "Business Process Automation",
+            "Change Management"
+        ]
+    },
+    {
+        title: "Managed IT Services & Support",
+        description: "Ensure the smooth and efficient operation of your IT infrastructure with our proactive managed services, offering 24/7 monitoring, helpdesk support, and system maintenance.",
+        features: [
+            "24/7 IT Helpdesk Support",
+            "Network Monitoring & Management",
+            "Server & Endpoint Management",
+            "Data Backup & Disaster Recovery",
+            "IT Infrastructure Optimization"
+        ]
+    },
+    {
+        title: "Data Analytics & Business Intelligence",
+        description: "Unlock insights from your data to make informed business decisions. We design and implement data warehousing, reporting, and predictive analytics solutions.",
+        features: [
+            "Data Strategy & Governance",
+            "Data Warehousing & ETL",
+            "Interactive Dashboards & Reporting",
+            "Predictive Analytics & Machine Learning",
+            "Data Visualization"
+        ]
+    }
+];
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+    <main>
+        <section class="page-hero">
+            <div class="container">
+                <h1>Our Comprehensive IT Consulting Services</h1>
+                <p class="hero-description">At FineArk Technologies, we empower businesses with innovative and strategic IT solutions. Explore our core service areas designed to drive your success.</p>
+            </div>
+        </section>
+
+        <section class="services-list-section">
+            <div class="container">
+                <div class="services-grid">
+                    {services.map(service => (
+                        <ServiceCard
+                            title={service.title}
+                            description={service.description}
+                            features={service.features}
+                        />
+                    ))}
+                </div>
+            </div>
+        </section>
+
+        <CallToAction />
+    </main>
+</BaseLayout>
+
+<style>
+    /* Hero section for the page */
+    .page-hero {
+        background-color: var(--color-primary);
+        color: white;
+        padding: 5rem 0;
+        text-align: center;
+    }
+
+    .page-hero h1 {
+        font-size: clamp(2rem, 4vw, 3rem); /* Responsive font size */
+        color: white;
+        margin-bottom: 1rem;
+    }
+
+    .page-hero .hero-description {
+        font-size: clamp(1rem, 2vw, 1.25rem); /* Responsive font size */
+        max-width: 800px;
+        margin: 0 auto;
+        color: var(--color-light-gray);
+    }
+
+    /* Section for the grid of service cards */
+    .services-list-section {
+        padding: var(--spacing-lg) 0;
+        background-color: var(--color-background);
+        /* Ensure there's space below this section */
+        margin-bottom: 0; /* Remove any default margin-bottom */
+    }
+
+    .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        column-gap: var(--spacing-md); /* Spacing between columns */
+        row-gap: var(--spacing-lg);    /* Spacing between rows - use a larger spacing variable for more visual separation */
+    }

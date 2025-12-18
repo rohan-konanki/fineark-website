@@ -1,0 +1,307 @@
+---
+// src/layouts/BaseLayout.astro
+// Frontmatter (JavaScript/TypeScript context for defining props, imports, etc.)
+
+interface Props {
+    title: string;          // Required: Page title for the browser tab/SEO
+    description?: string;   // Optional: Meta description for SEO
+    // You can add more props here if needed, e.g., image, canonicalUrl, etc.
+}
+
+// Destructure props passed to the layout
+const { title, description = "Default description for your IT consulting company website." } = Astro.props;
+
+// You can import components here if they are part of your layout,
+// for example, if you wanted a more complex header component:
+// import Header from '../components/Header.astro';
+// import Footer from '../components/Footer.astro';
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content={description} />
+    <title>{title}</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <link rel="stylesheet" href="/styles/global.css" />
+
+    </head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <a href="/">
+                    <img src="/logo.svg" alt="FineARK Technologies Logo" width="150" height="40" />
+                </a>
+            </div>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/services">Services</a></li>
+                <li><a href="/about">About Us</a></li>
+                <li><a href="/contact" class="button primary">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <slot />
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>FineARK Technologies</h4>
+                    <p>Providing cutting-edge IT solutions for businesses worldwide.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="LinkedIn"><img src="/icons/linkedin.svg" alt="LinkedIn" width="24" height="24"></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="/services">Services</a></li>
+                        <li><a href="/about">About Us</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <p>Email: <a href="mailto:contact@finearktech.com">contact@finearktech.com</a></p>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; {new Date().getFullYear()} FineARK Technologies. All rights reserved.
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
+
+<style is:global>
+    /* Basic global styles for the layout 
+    <p>Phone: <a href="tel:+1234567890">+1 (234) 567-890</a></p>
+    */
+    :root {
+        /* ----- UPDATED COLOR PALETTE (Grays + Muted Blue Buttons) ----- */
+        --color-primary: #343a40; /* Dark charcoal/almost black */
+        --color-secondary: #6b84a2; /* CHANGED: Slightly lighter muted blue */
+        --color-secondary-hover: #5b7194; /* Adjusted to be darker than new --color-secondary */
+        --color-accent: #adb5bd; /* Lighter gray */
+
+        --color-text-dark: #212529;
+        --color-text-light: #f8f9fa;
+
+        --color-background: #f8f9fa;
+        --color-light-gray: #e9ecef;
+        /* ---------------------------------- */
+
+        --border-radius: 6px;
+        --max-width: 1200px;
+        --spacing-md: 1.5rem;
+        --spacing-lg: 4rem;
+    }
+
+    body {
+        font-family: 'Lato', sans-serif; /* Use a modern font */
+        line-height: 1.6;
+        color: var(--color-text-dark);
+        margin: 0;
+        background-color: var(--color-background);
+        scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+    }
+
+    /* Basic typography */
+    h1, h2, h3, h4, h5, h6 {
+        color: var(--color-primary);
+        line-height: 1.2;
+        margin-top: 0;
+        margin-bottom: 0.8em;
+    }
+
+    p {
+        margin-bottom: 1em;
+    }
+
+    a {
+        color: var(--color-secondary);
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    /* Utility classes */
+    .container {
+        max-width: var(--max-width);
+        margin: 0 auto;
+        padding: 0 var(--spacing-md); /* Add some padding on smaller screens */
+    }
+
+    .button {
+        display: inline-block;
+        padding: 0.8em 1.5em;
+        border-radius: var(--border-radius);
+        text-decoration: none;
+        font-weight: 600;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        border: none;
+        cursor: pointer;
+        text-align: center;
+    }
+
+    .button.primary {
+        background-color: var(--color-secondary); /* Base muted blue */
+        color: white;
+    }
+
+    .button.primary:hover {
+        background-color: var(--color-secondary-hover); /* CHANGED: Using the new hover variable */
+        transform: translateY(-2px);
+    }
+
+    .button.secondary {
+        background-color: transparent;
+        color: var(--color-secondary); /* Text/border is base muted blue */
+        border: 2px solid var(--color-secondary);
+    }
+
+    .button.secondary:hover {
+        background-color: var(--color-secondary-hover); /* CHANGED: Using the new hover variable */
+        color: white;
+        transform: translateY(-2px);
+    }
+
+    /* Header/Navigation */
+    header {
+        background-color: white;
+        padding: 1rem 0;
+        border-bottom: 1px solid var(--color-light-gray);
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        position: sticky; /* Makes header stick to the top */
+        top: 0;
+        z-index: 1000; /* Ensures it stays on top of other content */
+    }
+
+    header .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo img {
+        height: 40px; /* Adjust as needed */
+        width: auto;
+    }
+
+    header nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        gap: 20px; /* Space between nav items */
+        align-items: center;
+    }
+
+    header nav a {
+        font-weight: 600;
+        color: var(--color-text-dark);
+    }
+
+    header nav a:hover {
+        color: var(--color-secondary);
+        text-decoration: none;
+    }
+
+    /* Footer */
+    footer {
+        background-color: var(--color-primary);
+        color: var(--color-text-light);
+        padding: var(--spacing-lg) 0;
+    }
+    /* margin-top: var(--spacing-lg);*/
+
+    .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: var(--spacing-md);
+        margin-bottom: var(--spacing-md);
+    }
+
+    .footer-col h4 {
+        color: white;
+        margin-bottom: 1rem;
+    }
+
+    .footer-col ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .footer-col ul li {
+        margin-bottom: 0.5rem;
+    }
+
+    .footer-col ul a,
+    .footer-col p {
+        color: var(--color-light-gray);
+        text-decoration: none;
+        font-size: 0.95rem;
+    }
+
+    .footer-col ul a:hover {
+        text-decoration: underline;
+        color: white;
+    }
+
+    .social-links a {
+        display: inline-block;
+        margin-right: 10px;
+    }
+
+    .social-links img {
+        /* Makes SVG icons white on dark background for consistency */
+        filter: invert(1);
+        opacity: 0.8;
+        transition: opacity 0.2s ease;
+    }
+
+    .social-links img:hover {
+        opacity: 1;
+    }
+
+    .copyright {
+        text-align: center;
+        margin-top: var(--spacing-md);
+        padding-top: var(--spacing-md);
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    /* Responsive adjustments for smaller screens */
+    @media (max-width: 768px) {
+        header .container {
+            flex-direction: column; /* Stack logo and nav vertically */
+            text-align: center;
+        }
+
+        header nav ul {
+            flex-wrap: wrap; /* Allow nav items to wrap */
+            justify-content: center;
+            margin-top: 15px;
+            gap: 15px;
+        }
+
+        .footer-grid {
+            grid-template-columns: 1fr; /* Stack footer columns */
+            text-align: center;
+        }
+    }
+</style>

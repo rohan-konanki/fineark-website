@@ -1,0 +1,28 @@
+---
+// src/pages/index.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroSection from '../components/HeroSection.astro';
+import ServicesOverview from '../components/ServicesOverview.astro';
+import CallToAction from '../components/CallToAction.astro';
+//import BlogPostsPreview from '../components/BlogPostsPreview.astro'; // Optional: if you have a blog
+
+// Frontmatter for page-specific metadata
+const pageTitle = "Expert IT Consulting for Your Business | FineARK Technologies";
+const pageDescription = "Leading IT consulting firm offering strategic technology solutions, cybersecurity, cloud services, and custom software development.";
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+    <main>
+        <HeroSection />
+        <ServicesOverview />
+        {/* Uncomment if you have a blog */}
+        <CallToAction />
+    </main>
+</BaseLayout>
+
+<style>
+    /* Global styles or component-specific overrides for index.astro */
+    main {
+        padding: 0; /* Components will handle their own padding/margins */
+    }
+</style>

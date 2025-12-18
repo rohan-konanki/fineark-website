@@ -1,0 +1,45 @@
+---
+// src/components/CallToAction.astro
+---
+<section class="cta-section">
+    <div class="container">
+        <h2>Ready to Transform Your Business?</h2>
+        <p>Connect with our experts today to discuss your IT challenges and find tailored solutions for growth.</p>
+        <a href="/contact" class="button primary">Get in Touch</a>
+    </div>
+</section>
+
+<style>
+    /* These styles are scoped specifically to this CallToAction component */
+    .cta-section {
+        background-color: #1e3a5a; /* Deep blue background for the CTA section */
+        color: white; /* Light text on dark background */
+        padding: 5rem 0;
+        text-align: center;
+        margin-top: 0;
+    }
+    .cta-section h2 {
+        font-size: clamp(2rem, 4vw, 3rem);
+        margin-bottom: 1.5rem;
+        color: white; /* Keep heading white for contrast */
+    }
+    .cta-section p {
+        font-size: 1.15rem;
+        max-width: 800px;
+        margin: 0 auto 2.5rem auto;
+        color: var(--color-light-gray); /* Light gray for paragraph text */
+    }
+
+    /* CUSTOM STYLES FOR THE CTA BUTTON - OVERRIDING GLOBAL */
+    .cta-section .button.primary {
+        background-color: var(--color-accent); /* Base button color: Lighter gray (#adb5bd) */
+        color: var(--color-primary); /* Text color: Dark charcoal (#343a40) */
+        border: 2px solid var(--color-accent);
+    }
+
+    .cta-section .button.primary:hover {
+        background-color: #92a0b1; /* CHANGED: Hover button color: A slightly darker gray than the base */
+        color: var(--color-primary); /* Text color: Dark charcoal for contrast */
+        border-color: #92a0b1; /* Adjusted border for consistency */
+    }
+</style>
